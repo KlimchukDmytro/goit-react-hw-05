@@ -1,0 +1,18 @@
+.header {
+  background-color: #bbbbbb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  height: 80px;
+}
+
+.nav {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+}
+
+/* .active {
+  text-decoration: underline;
+  color: rgb(218, 13, 13);
+} */
