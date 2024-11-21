@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.img {
+  height: 300px;
+  width: 200px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 20px;
+}
