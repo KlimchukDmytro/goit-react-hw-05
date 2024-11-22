@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   useParams,
   NavLink,
@@ -13,17 +13,19 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
-  console.log(location);
+  const backLinkRef = useRef(location.state?.from || "/");
 
   useEffect(() => {
-    fetchMovieDetails(movieId).then(setMovie).catch(console.error);
+    fetchMovieDetails(movieId)
+      .then(setMovie)
+      .catch((error) => console.error("Error fetching movie details:", error));
   }, [movieId]);
 
   if (!movie) return <p>Loading movie...</p>;
 
   return (
     <div>
-      <Link to="/">Go back</Link>
+      <Link to={backLinkRef.current}>Go back</Link>
       <div className={s.container}>
         <div>
           <img
@@ -37,7 +39,6 @@ const MovieDetailsPage = () => {
           <p>{movie.overview}</p>
         </div>
       </div>
-
       <nav className={s.nav}>
         <NavLink to="cast">Cast</NavLink>
         <NavLink to="reviews">Reviews</NavLink>
