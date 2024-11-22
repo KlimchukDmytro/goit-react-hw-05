@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useFormik, Field, Form, Formik } from "formik";
 import { fetchMoviesByQuery } from "../../api";
+import { Link, useLocation } from "react-router-dom";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
+  const location = useLocation();
+  console.log(location);
 
   const formik = useFormik({
     initialValues: {
@@ -20,7 +23,6 @@ const MoviesPage = () => {
     <div>
       <Formik>
         <Form onSubmit={formik.handleSubmit}>
-          {" "}
           <Field
             type="text"
             name="query"
@@ -33,7 +35,9 @@ const MoviesPage = () => {
       </Formik>
       <ul>
         {movies.map((movie) => (
-          <li key={movie.id}>{movie.title}</li>
+          <li key={movie.id}>
+            <Link to={`/movies/${movie.id}`}>{movie.title}</Link>{" "}
+          </li>
         ))}
       </ul>
     </div>

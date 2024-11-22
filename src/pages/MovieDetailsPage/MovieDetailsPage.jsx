@@ -1,20 +1,29 @@
 import { useEffect, useState } from "react";
-import { useParams, NavLink, Outlet } from "react-router-dom";
+import {
+  useParams,
+  NavLink,
+  Outlet,
+  useLocation,
+  Link,
+} from "react-router-dom";
 import { fetchMovieDetails } from "../../api";
 import s from "./MovieDetailsPage.module.css";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const location = useLocation();
+  console.log(location);
 
   useEffect(() => {
     fetchMovieDetails(movieId).then(setMovie).catch(console.error);
   }, [movieId]);
 
-  if (!movie) return <p>Loading...</p>;
+  if (!movie) return <p>Loading movie...</p>;
 
   return (
     <div>
+      <Link to="/">Go back</Link>
       <div className={s.container}>
         <div>
           <img
